@@ -1,0 +1,56 @@
+Docker file:
+------------
+:A text file with instructions to build image
+:Automation of Docker image creation
+
+Step 1: Create a file named Dockerfile
+		D: D must be CAPITAL
+		--Default file name Dockerfile
+
+	:mkdir Dockerfiles
+	:cd Dockerfiles
+	:vim Dockerfile
+
+Step 2: Add instructions to Dockerfile
+
+vim Dockerfile
+#getting base image ubuntu
+	FROM ubuntu:12.04
+	MAINTAINER DevOpsEngineer
+	RUN mkdir -p  /tst/tst1
+--Save and Exit(:wq!)
+
+Step 3:docker build -t [ANY_IMAGE_NAME:TAGNAME] [LOCATION OF DOCKER FILE]
+	   docker build -t [ANY_IMAGE_NAME] [LOCATION OF DOCKER FILE]
+	Eg:docker build -t MyUbuntuImage .
+	   [.] current file(i.e dockerfile) location
+	
+	[To Verify]
+	:docker images
+	:docker ps -a
+	--Will be empty
+
+step 4: CREATE CONTAINER FROM THE ABOVE IMAGE
+	  : docker run -it --name [CONTAINER-NAME] [IMAGE-NAME] [COMMAND]
+		--it(intermediate/terminal mode)	
+	  : Eg :docker run -it --name  testcontiner myubuntuimage //bin/sh
+	  [To Verify]
+	  :docker ps -a
+	  :By default container will be stop mode
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+950c847515b0        myubuntuimage      "/bin/sh"           6 minutes ago        Exited                            testcontiner
+	
+	  : TO START CONTAINER
+		docker start [CONTAINER-NAME]
+		docker start testcontiner
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+950c847515b0        myubuntuimage      "/bin/sh"           6 minutes ago        Up                           		testcontiner
+
+Step 4: 
+	docker run -it --rm REPOSITORY:TAG COMMAND
+	Eg: docker run -it --rm myubuntuimage /bin/sh
+	# ls
+	bin   dev  home  lib64  mnt  proc  run   selinux  sys  tst  var
+	boot  etc  lib   media  opt  root  sbin  srv      tmp  usr
+	:exit(To Come out of image(ubuntu o/s) 
+	
