@@ -1,0 +1,49 @@
+CREATE CONTAINER
+----------------
+:docker run --name <CONTAINER_NAME> -it <IMAGE_NAME> //bin/bash
+	Eg : docker run --name saicontainer -it ubuntu //bin/bash
+
+:ls
+:bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+CREATE FILE INSIDE tmp[RUN BELOW COMMAND BEING INSIDE CONTAINER:
+---------------------------------------------------------------
+:touch /tmp/MyFile
+:cd tmp
+:ls[To Verify File Created OR Not]
+:exit
+
+:docker diff <CONTAINER_NAME>
+ Eg:docker diff saicontainer
+--Descriptin:Inspect changes to files or directories on a container’s filesystem
+--OUTPUT:
+---------
+C /root
+A /root/.bash_history
+C /run
+D /run/secrets
+C /tmp
+A /tmp/myfile
+
+symble  	Description
+A       	A file or Directory was added
+D		A file or Directory was deleted
+C		A file or Directory was changed
+
+
+TO CREATE IMAGE FROM CONTAINER (BE INSIDE THE BASE MACHINE)
+----------------------------------------------------------
+:docker commit <CONTAINER_NAME>
+  Eg docker commit saicontainer
+  OUTPUT:sha256:5392957056d6610d462e2d272d97166ed0d291d49294a8a2cd6c472ed526e11f
+
+:docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+<none>                      <none>              5392957056d6        14 seconds ago      64.2 MB
+
+:docker tag <IMAGE_ID> <ANY_NAME>
+  Eg docker tag 5392957056d6 saiimage
+
+:docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+saiimage                   latest              5392957056d6        32 seconds ago      64.2 MB

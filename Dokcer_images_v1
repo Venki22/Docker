@@ -1,0 +1,72 @@
+What are IMAGES?
+--------------
+Docker images are templates used to create docker container
+Images are stored in Registries (i.e docker hub)
+
+CONTAINER:
+---------
+Container is a running instance of image.
+
+A container images is a lightweight,stand-alone,executable package of a pieace of software that includes everything needed to run it: code,runtime,system tools,system librearies,settings
+
+Features of Containers:
+----------------------
+Lightweight
+Less resources ar used
+Booting of containers is very fast
+Can start,stop,kill,remove containers easily and quick
+Operating System resorces can be shared within Docker
+
+
+1.docker pull <image_name>
+	command serves for downloading Docker images from a registry.
+	if we are not give any tag latest version will be downloaded.
+	Eg:docker pull ubuntu
+	
+2.docker pull <image_name:tag>
+    Eg:docker pull ubuntu:18.10
+
+3.docker run <image_name>
+    container will be created.
+    docker ps -a[verify]
+
+4.docker run --name <Container_name> -it <Image_name> bash
+   Eg:docker run --name MyHttpD -it httpd bash [To Run Container]
+   #ls [To verify continer created or not]
+   bin  build  cgi-bin  conf  error  htdocs  icons  include  logs  modules
+   exit[come outof container]
+   
+5.docker ps -a
+   To see all containers
+   
+6.docker start <container_name>
+7.docker ps 
+   To see running instance
+   
+9.docker stop <container_name>
+  docker stop $(docker ps -a -q)
+   To stop all continer in one go.
+   
+10.docker rmi <mage_id>
+   To delete image
+  docker rmi $(docker images -q)
+   To delete all images in one go.
+
+11.sudo service docker restart
+12.docker pause   <CONTAINER_NAME | ID>
+13.docker unpause <CONTAINER_NAME | ID>
+14.docker top 	  <CONTAINER_NAME | ID>
+15.docker stats   <CONTAINER_NAME | ID>
+16.docker attach  <CONTAINER_NAME | ID>
+17.docker kill    <CONTAINER_NAME | ID>
+18.docker rm      <CONTAINER_NAME | ID>
+19.docker image -q 
+   [To Get the image ID]
+
+
+
+
+	
+
+
+
